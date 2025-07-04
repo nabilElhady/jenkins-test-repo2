@@ -3,10 +3,10 @@ pipeline {
 
     stages {
         stage('Clone') {
-            steps {
-                git 'https://github.com/nabilElhady/jenkins-test-repo2'
-            }
-        }
+    steps {
+        git branch: 'main', url: 'https://github.com/nabilElhady/jenkins-test-repo2'
+    }
+}
 
         stage('Install Dependencies') {
             steps {
