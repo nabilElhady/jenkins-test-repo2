@@ -3,10 +3,10 @@ pipeline {
 
     stages {
         stage('Clone') {
-    steps {
-        git branch: 'main', url: 'https://github.com/nabilElhady/jenkins-test-repo2'
-    }
-}
+            steps {
+                git 'https://github.com/nabilElhady/jenkins-test-repo2'
+            }
+        }
 
         stage('Install Dependencies') {
             steps {
@@ -16,7 +16,13 @@ pipeline {
 
         stage('Test') {
             steps {
-                bat 'npm test'
+                bat 'npm test > output.txt'
+            }
+        }
+
+        stage('Archive Results') {
+            steps {
+                archiveArtifacts artifacts: 'output.txt', fingerprint: true
             }
         }
     }
